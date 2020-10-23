@@ -1,0 +1,19 @@
+<template>
+    <lightning-layout multiple-rows="true">
+        <lightning-layout-item class="slds-align-middle" padding="around-small">
+            <lightning-combobox class="slds-align-middle" options={typeOptions} value={selectedType} 
+                onchange={handleTypeChange}></lightning-combobox>
+        </lightning-layout-item>
+        <lightning-layout-item>
+            <template if:true={accounts.data}>
+                <template if:true={isLoading}>
+                    <lightning-spinner alternative-text="Loading" variant="brand"></lightning-spinner> 
+                </template>
+                <template if:false={isLoading}>
+                    <lightning-datatable key-field="Id" data={accounts.data} columns={columns} 
+                        onsave={handleSave} hide-checkbox-column></lightning-datatable>
+                </template>                
+            </template>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>
